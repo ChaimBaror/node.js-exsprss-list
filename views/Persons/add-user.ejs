@@ -1,0 +1,46 @@
+<%- include("../_header") -%>
+
+
+    <h1><%= title %></h1>
+
+
+    <form action="/listUsers/add" method="post">
+        <div class="form-horizontal">
+            <div class="form-group row">
+                <label class="col-form-label col-sm-2" for="LastName">Last Name</label>
+                <div class="col-sm-8">
+                    <input autofocus class="form-control" name="LastName" value="" />
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-form-label col-sm-2" for="FirstName">First Name</label>
+                <div class="col-sm-7">
+                    <input class="form-control" name="FirstName" value="" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-form-label col-sm-2" for="phone">Phone</label>
+                <div class="col-sm-7">
+                    <input type="phone" class="form-control" name="phone" value="" />
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-form-label col-sm-2" for="EmailAddress">Email Address</label>
+                <div class="col-sm-10">
+                    <textarea type="email" class="form-control" cols="20" name="Email Address" maxlength="32000"
+                        rows="3"></textarea>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-form-label col-sm-2"></label>
+                <div class="col-sm-10">
+                    <input type="submit" value="Save" class="btn btn-default btn-success" />
+                    <a class="btn btn-outline-dark cancel" href="/listUsers">Cancel</a>
+                </div>
+            </div>
+        </div>
+    </form>
+<%- include("../_footer") -%>
