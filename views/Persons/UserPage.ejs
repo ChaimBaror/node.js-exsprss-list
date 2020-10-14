@@ -1,0 +1,41 @@
+<%- include("../_header") -%>
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<div class="text-center">
+    <div class="block-update-card">
+        <h1> <%= title  %> (<%=  user.FirstName %>) </h1>
+    </div>
+    <div class="media block-update-card">
+        <a class="pull-left" href="#">
+            <img class="media-object update-card-MDimentions" src="../../images/logo6.gif" alt="..." width="200">
+            <h2><%= user.FirstName %> <%=user.LastName %> </h2>
+        </a>
+        <div class="media-body update-card-body">
+            <div class="btn-toolbar card-body-social" role="toolbar">
+                <div class="btn-group fa fa-github-alt git"></div>
+                <div class="btn-group linkedin fa fa-linkedin-square"></div>
+                <div class="btn-group twitter fa fa-twitter"></div>
+                <div class="btn-group fab fa-angellist"></div>
+
+            </div>
+            <p class="lead">
+                <label for="">Email : </label> <a href="#"><%=  user.EmailAddress%> </a><br>
+                <label for="">id : </label> <a href="#" class="btn btn-lg btn-secondary">(<%=  user.PersonID %>) </a>
+            </p>
+        </div>
+    </div>
+
+
+    <div class="block-update-card status">
+
+        <div class="card-action-pellet btn-toolbar pull-right" role="toolbar">
+            <div class="btn-group fa fa-mail-reply"></div>
+            <div class="btn-group fa fa-map-marker"></div>
+            <div class="btn-group fa fa-magic"></div>
+            <div class="btn-group fa fa-photo"></div>
+        </div>
+    </div>
+
+</div>
+</div>
+
+<%- include("../_footer") -%>

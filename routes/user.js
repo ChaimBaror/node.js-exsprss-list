@@ -16,10 +16,9 @@ router.get('/add', listController.add_new_user_form);
 router.post('/add',listController.add_new_user);
 
 
-// router.get('/edit/:id', BookController.edit_book_form);
+router.get('/userpage/:id',listController.UserPage);
 
-// router.post('/edit/:id', validation(Schemas.Book), BookController.update_book_data);
 
-// router.get('/delete/:id', BookController.delete_the_book);
+router.get('/delete/:id', listController.delete_the_user);
 
 module.exports = router;

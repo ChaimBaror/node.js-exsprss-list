@@ -1,15 +1,15 @@
 const { db } = require('../data/config');
 
 
-exports.getAllList = () => new Promise( (resolve , reject) => {
+exports.getAllList = () => new Promise((resolve, reject) => {
     var sql_string = 'SELECT * FROM Persons';
 
     db.all(sql_string, [], (err, rows) => {
-        if (err){
+        if (err) {
             console.log(err.message);
             reject(err);
         }
-        else{
+        else {
             resolve(rows);
         }
     });
@@ -29,11 +29,12 @@ function getBook(id) {
         }
     });
 }
-
-exports.addUser = (LastName ,FirstName, EmailAddress, phone) => {
-    console.log("Add a new User request",LastName ,FirstName, EmailAddress, phone);
-    const sql = "INSERT INTO Persons (LastName, FirstName, EmailAddress, phone) VALUES (?,?, ? , ?)";
-    const book = [LastName,FirstName, EmailAddress, phone];
+let cunterId = 1
+exports.addUser = (LastName, FirstName, EmailAddress, phone) => {
+    cunterId++
+    console.log("Add a new User request", LastName, FirstName, EmailAddress, phone);
+    const sql = "INSERT INTO Persons (PersonID,LastName, FirstName, EmailAddress, phone) VALUES (?,?, ?,? , ?)";
+    const book = [cunterId, LastName, FirstName, EmailAddress, phone];
     db.run(sql, book, err => {
         if (err) {
             console.error(err.message);
@@ -42,7 +43,7 @@ exports.addUser = (LastName ,FirstName, EmailAddress, phone) => {
 };
 
 
-function editbook(id){
+function editbook(id) {
     // let id = req.params.id;
 
     console.log(req.body);
@@ -59,14 +60,28 @@ function editbook(id){
 
 }
 
-function deleteUser(){
-    let id = req.params.id;
+exports.getPage = (id) => new Promise((resolve, reject) => {
+    console.log("way is not work");
+    var sql_string = 'SELECT * FROM Persons WHERE PersonID=?';
 
-    // let compfirmed = confirm("Are you sure?");
+    db.get(sql_string, id, (err, row) => {
+        if (err) {
+            console.log(err.message);
+            reject(err)
+        }
+        else {
+            resolve(row)
+        }
+    })
+})
+
+
+
+exports.deleteUser = function (u_id, res) {
+    let id = u_id;
 
     const sql = "DELETE FROM Persons WHERE PersonID=?";
 
-    // if (compfirmed === true) {
     db.run(sql, id, err => {
         if (err) {
             return console.error(err.message);
@@ -74,6 +89,4 @@ function deleteUser(){
         res.redirect(`/listUsers`);
     });
 
-    // } else
-    // return;
 }

@@ -37,8 +37,21 @@ exports.add_new_user_form = function (req, res) {
     console.log("add_new_user_form");
 }
 
+exports.UserPage = async function (req, res) {
 
-exports.add_new_user =  function (req, res) {
+    console.log("user_UserPage", req.params.id);
+    row = await User.getPage(req.params.id);
+
+    res.render('Persons/UserPage', {
+        title: 'this a User Page',
+        user: row
+    });
+    console.log("new_user_UserPage");
+}
+
+
+
+exports.add_new_user = function (req, res) {
     console.log(req.body);
     const FirstName = req.body.FirstName;
     const LastName = req.body.LastName;
@@ -46,11 +59,20 @@ exports.add_new_user =  function (req, res) {
     const EmailAddress = req.body.EmailAddress;
 
     try {
-        User.addUser(LastName ,FirstName, EmailAddress, phone);
+        User.addUser(LastName, FirstName, EmailAddress, phone);
     } catch (error) {
         console.log(error.message)
     }
 
     res.redirect(`/listUsers`);
+
+}
+exports.delete_the_user = function (req, res) {
+    console.log("listcontroller-delete", req.url);
+    try {
+        User.deleteUser(req.params.id, res);
+    } catch (error) {
+        console.log(error.message);
+    }
 
 }
